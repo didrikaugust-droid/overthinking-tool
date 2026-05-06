@@ -1,47 +1,54 @@
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p =>
-    p.classList.remove('active')
-  );
-  document.getElementById(id).classList.add('active');
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById(pageId).classList.add('active');
 }
 
-function analyze(){
-  const text = document.getElementById("input").value;
+// live character counter
+const input = document.getElementById("input");
+const counter = document.getElementById("counter");
 
-  if(!text){
-    alert("Type something first");
+if (input) {
+  input.addEventListener("input", () => {
+    counter.textContent = `${input.value.length} / 300`;
+  });
+}
+
+// MAIN ANALYZE FUNCTION
+function analyze() {
+  const text = input.value.trim();
+
+  if (!text) {
+    alert("Please write something first 🙂");
     return;
   }
 
-  const percent = Math.floor(Math.random() * 100);
+  // simple overthinking score
+  let score = Math.min(95, Math.floor(text.length * 0.6 + Math.random() * 20));
 
-  document.getElementById("percent").innerText = percent + "%";
-  document.getElementById("fill").style.width = percent + "%";
+  // update UI
+  document.getElementById("percent").textContent = score + "%";
+  document.getElementById("fill").style.width = score + "%";
 
-  const data = [
-    "This might not be as serious as it feels.",
-    "You are probably overestimating the situation.",
-    "What is the worst realistic outcome?",
-    "You will handle this better than you think."
+  // perspectives
+  const perspectives = [
+    "You're trying to control something that doesn't need control.",
+    "This feels bigger in your mind than it is in reality.",
+    "You don't need more answers — you need more calm.",
+    "If a friend told you this, what would you say to them?"
   ];
 
-  const box = document.getElementById("perspectives");
-  box.innerHTML = "";
+  const container = document.getElementById("perspectives");
+  container.innerHTML = "";
 
-  data.forEach(t => {
+  perspectives.forEach(text => {
     const div = document.createElement("div");
     div.className = "card";
-    div.innerText = t;
-    box.appendChild(div);
+    div.textContent = text;
+    container.appendChild(div);
   });
 
-  showPage('resultPage');
+  showPage("resultPage");
 }
-
-setInterval(() => {
-  const el = document.getElementById("input");
-  if(el){
-    document.getElementById("counter").innerText =
-      el.value.length + " / 300";
-  }
-}, 200);
