@@ -1,125 +1,58 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: radial-gradient(circle at top, #1b1b3a, #0d0d14);
-  color: white;
+const logical = [
+  "Dette er sannsynligvis ikke så alvorlig.",
+  "Det finnes flere forklaringer.",
+  "Folk tenker mindre på deg enn du tror."
+];
+
+const emotional = [
+  "Det er forståelig at du føler det slik.",
+  "Dette er helt normalt.",
+  "Du håndterer dette bra."
+];
+
+const overthinking = [
+  "Hva om alt går galt?",
+  "Tenk hvis du tar feil...",
+  "Hva om dette betyr noe mer?"
+];
+
+const friend = [
+  "Slapp av 😄 dette går fint",
+  "Du overtenker litt nå",
+  "Ikke stress, det ordner seg"
+];
+
+function random(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px 30px;
-}
+function analyze() {
+  const results = document.getElementById("results");
+  const level = Math.floor(Math.random() * 100);
 
-.hero h1 {
-  font-size: 36px;
-  margin: 0;
-}
+  results.innerHTML = `
+    <div>
+      <div class="card">
+        <h2>Overthinking level: ${level}%</h2>
+        <div class="bar">
+          <div class="fill" style="width:${level}%"></div>
+        </div>
+      </div>
 
-.hero h2 {
-  font-size: 28px;
-  margin: 10px 0;
-  background: linear-gradient(90deg, #c084fc, #e879f9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+      <div class="grid" style="margin-top:15px;">
+        <div class="smallCard">🧠 ${random(logical)}</div>
+        <div class="smallCard">😌 ${random(emotional)}</div>
+        <div class="smallCard">😈 ${random(overthinking)}</div>
+        <div class="smallCard">💬 ${random(friend)}</div>
+      </div>
+    </div>
 
-.hero p {
-  opacity: 0.6;
-}
-
-/* MAIN */
-main {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* INPUT */
-.inputBox {
-  display: flex;
-  gap: 10px;
-  padding: 14px;
-  border-radius: 18px;
-
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-textarea {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: white;
-  outline: none;
-  resize: none;
-}
-
-button {
-  background: linear-gradient(135deg, #c084fc, #9333ea);
-  border: none;
-  border-radius: 12px;
-  padding: 10px 16px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* RESULTS PANEL */
-#results {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* CARD */
-.card {
-  padding: 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  animation: fade 0.3s ease;
-}
-
-/* LEVEL BAR */
-.level {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.bar {
-  height: 8px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.1);
-  margin-top: 8px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  background: linear-gradient(90deg, #facc15, #ec4899);
-}
-
-/* GRID (perspektiver) */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.smallCard {
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 13px;
-  background: rgba(255,255,255,0.05);
-}
-
-/* ANIMATION */
-@keyframes fade {
-  from {opacity:0; transform: translateY(10px);}
-  to {opacity:1; transform: translateY(0);}
+    <div class="card tips">
+      <h3>Tips & Råd</h3>
+      <div>🧘 Pust dypt</div>
+      <div>📝 Skriv det ned</div>
+      <div>👥 Snakk med noen</div>
+      <div>⭐ Husk: Du er ikke tankene dine</div>
+    </div>
+  `;
 }
