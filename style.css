@@ -6,9 +6,11 @@
 }
 
 body{
-  background:#0b0a16;
-  color:white;
-  overflow-x:hidden;
+body {
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f14);
+  color: white;
+  overflow-x: hidden;
+}
 }
 
 .bg{
