@@ -1,57 +1,90 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Overthinker Tool</title>
+
   <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="logo">🧠 Overthinker Tool</div>
-  <div class="nav-links">
-    <a href="#">Hjem</a>
-    <a href="#">Om</a>
-    <a href="#">Tips</a>
-    <button class="mode">🌙 Mørk modus</button>
-  </div>
-</nav>
+<div class="bg"></div>
 
-<!-- HERO -->
-<section class="hero">
+<div class="container">
 
+<header class="header">
+  <div class="logo">🧠 Overthinker</div>
+  <nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('tips')">Tips</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active hero">
   <div class="hero-left">
-    <h1>Stopp overtenkingen.</h1>
-    <h2>Få klarhet på sekunder.</h2>
 
-    <p>
-      Skriv hva du overtenker, så gir vi deg ulike perspektiver
-      som hjelper deg å se det klarere.
+    <h1>
+      Stop overthinking.<br>
+      <span>Get clarity instantly.</span>
+    </h1>
+
+    <p class="subtext">
+      Type your thoughts and get instant perspective shifts that calm your mind.
     </p>
 
-    <div class="inputBox">
-      <textarea id="input" maxlength="300" placeholder="Skriv hva du overtenker..."></textarea>
-      <button onclick="analyze()">Analyser ✨</button>
+    <div class="glass-box">
+      <textarea id="input" maxlength="300" placeholder="What are you overthinking?"></textarea>
+
+      <div class="row">
+        <span id="counter">0 / 300</span>
+        <button onclick="analyze()">Analyze ✨</button>
+      </div>
     </div>
 
     <div class="badges">
-      <div>🔒 100% anonymt</div>
-      <div>✨ Flere perspektiver</div>
-      <div>⚡ Raskt og enkelt</div>
+      <div>🔒 Anonymous</div>
+      <div>⚡ Instant</div>
+      <div>🧠 Clarity</div>
     </div>
+
   </div>
 
   <div class="hero-right">
-    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"/>
+    <div class="orb"></div>
   </div>
-
 </section>
 
 <!-- RESULT -->
-<section id="results" class="results"></section>
+<section id="resultPage" class="page">
+  <button class="back" onclick="showPage('home')">← Back</button>
+
+  <div class="card">
+    <h2>Overthinking Level</h2>
+    <h1 id="percent">0%</h1>
+    <div class="bar"><div id="fill"></div></div>
+  </div>
+
+  <div class="grid" id="perspectives"></div>
+</section>
+
+<!-- TIPS -->
+<section id="tips" class="page">
+  <h2>Calm Mind Tips</h2>
+
+  <div class="grid">
+    <div class="card">Focus on what you can control</div>
+    <div class="card">Write thoughts down</div>
+    <div class="card">Slow breathing (4-4-6)</div>
+    <div class="card">Talk to someone you trust</div>
+  </div>
+</section>
+
+</div>
 
 <script src="script.js"></script>
 </body>
