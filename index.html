@@ -9,24 +9,49 @@
 
 <body>
 
-<header class="hero">
-  <h1>Stopp overtenkingen.</h1>
-  <h2>Få klarhet på sekunder.</h2>
-  <p>Skriv hva du overtenker, så gir vi deg perspektiver.</p>
-</header>
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo">🧠 Overthinker Tool</div>
+  <div class="nav-links">
+    <a href="#">Hjem</a>
+    <a href="#">Om</a>
+    <a href="#">Tips</a>
+    <button class="mode">🌙 Mørk modus</button>
+  </div>
+</nav>
 
-<main>
+<!-- HERO -->
+<section class="hero">
 
-  <!-- INPUT -->
-  <div class="inputBox">
-    <textarea id="input" placeholder="Skriv hva du overtenker..."></textarea>
-    <button onclick="analyze()">Analyser ✨</button>
+  <div class="hero-left">
+    <h1>Stopp overtenkingen.</h1>
+    <h2>Få klarhet på sekunder.</h2>
+
+    <p>
+      Skriv hva du overtenker, så gir vi deg ulike perspektiver
+      som hjelper deg å se det klarere.
+    </p>
+
+    <div class="inputBox">
+      <textarea id="input" maxlength="300" placeholder="Skriv hva du overtenker..."></textarea>
+      <button onclick="analyze()">Analyser ✨</button>
+    </div>
+
+    <div class="badges">
+      <div>🔒 100% anonymt</div>
+      <div>✨ Flere perspektiver</div>
+      <div>⚡ Raskt og enkelt</div>
+    </div>
   </div>
 
-  <!-- RESULT -->
-  <div id="results"></div>
+  <div class="hero-right">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"/>
+  </div>
 
-</main>
+</section>
+
+<!-- RESULT -->
+<section id="results" class="results"></section>
 
 <script src="script.js"></script>
 </body>
