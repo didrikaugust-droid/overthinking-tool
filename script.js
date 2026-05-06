@@ -1,3 +1,4 @@
+alert("JS LOADED");
 window.analyze = function () {
   const input = document.getElementById("input");
   const text = input.value.trim();
