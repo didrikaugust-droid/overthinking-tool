@@ -31,6 +31,9 @@ const data=[
 "This is smaller than your mind makes it",
 "Take a breath, you're safe",
 "You're predicting problems that don't exist",
+"You're focusing on worst-case scenarios.",
+"This might not matter as much as you think.",
+"Your thoughts are louder than the situation."
 "It will be okay, trust yourself"
 ];
 
