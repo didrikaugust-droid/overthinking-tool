@@ -1,52 +1,47 @@
-dette er min js function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-
-  document.getElementById(pageId).classList.add('active');
+function go(page){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(page).classList.add("active");
 }
 
-const input = document.getElementById("input");
-const counter = document.getElementById("counter");
+const input=document.getElementById("input");
+const counter=document.getElementById("counter");
+const results=document.getElementById("results");
 
-if (input) {
-  input.addEventListener("input", () => {
-    counter.textContent = `${input.value.length} / 300`;
-  });
+if(input){
+input.addEventListener("input",()=>{
+counter.textContent=`${input.value.length} / 300`;
+});
 }
 
-function analyze() {
-  const text = input.value.trim();
+function analyze(){
 
-  if (!text) {
-    alert("Please write something first 🙂");
-    return;
-  }
+const text=input.value.trim();
+if(!text){
+alert("Write something first");
+return;
+}
 
-  let score = Math.min(95, Math.floor(text.length * 0.6 + Math.random() * 20));
+let score=Math.floor(30+Math.random()*60);
 
-  document.getElementById("percent").textContent = score + "%";
-  document.getElementById("fill").style.width = score + "%";
+document.getElementById("percent").innerText=score+"%";
+document.getElementById("fill").style.width=score+"%";
 
-  const perspectives = [
-    "You're trying to control something that doesn't need control.",
-    "This feels bigger in your mind than it is in reality.",
-    "You don't need more answers — you need more calm.",
-    "Take a breath, it's okay.",
-    "I think you're making this bigger than it is.",
-    "It will all work out 👍
-    "If a friend told you this, what would you say to them?"
-  ];
+const data=[
+"You are overthinking more than needed",
+"This is smaller than your mind makes it",
+"Take a breath, you're safe",
+"You're predicting problems that don't exist",
+"It will be okay, trust yourself"
+];
 
-  const container = document.getElementById("perspectives");
-  container.innerHTML = "";
+results.innerHTML="";
 
-  perspectives.forEach(t => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.textContent = t;
-    container.appendChild(div);
-  });
+data.sort(()=>Math.random()-0.5).slice(0,4).forEach(t=>{
+let div=document.createElement("div");
+div.className="card";
+div.innerText=t;
+results.appendChild(div);
+});
 
-  showPage("resultPage");
+go("result");
 }
