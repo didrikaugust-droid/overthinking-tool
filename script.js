@@ -26,23 +26,36 @@ function random(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function analyze() {
-  const input = document.getElementById("input").value.trim();
+function addMessage(text, type) {
   const results = document.getElementById("results");
 
-  if (!input) {
-    alert("Skriv noe først!");
-    return;
-  }
+  const div = document.createElement("div");
+  div.classList.add("card", type);
+  div.textContent = text;
 
-  results.innerHTML = "";
+  results.appendChild(div);
+  results.scrollTop = results.scrollHeight;
+}
+
+function analyze() {
+  const input = document.getElementById("input");
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  // bruker input
+  addMessage(text, "user");
 
   const level = Math.floor(Math.random() * 100);
 
-  results.innerHTML += `<div class="level">Overthinking level: ${level}%</div>`;
+  setTimeout(() => {
+    addMessage(`Overthinking level: ${level}%`, "ai");
 
-  results.innerHTML += `<div class="card">🧠 Logisk: ${random(logical)}</div>`;
-  results.innerHTML += `<div class="card">😌 Følelse: ${random(emotional)}</div>`;
-  results.innerHTML += `<div class="card">😈 Overthinking: ${random(overthinking)}</div>`;
-  results.innerHTML += `<div class="card">💬 Venn: ${random(friend)}</div>`;
+    addMessage("🧠 Logisk: " + random(logical), "ai");
+    addMessage("😌 Følelse: " + random(emotional), "ai");
+    addMessage("😈 Overthinking: " + random(overthinking), "ai");
+    addMessage("💬 Venn: " + random(friend), "ai");
+  }, 300);
+
+  input.value = "";
 }
