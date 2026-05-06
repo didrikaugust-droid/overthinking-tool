@@ -1,20 +1,3 @@
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-
-  document.getElementById(pageId).classList.add('active');
-}
-
-const input = document.getElementById("input");
-const counter = document.getElementById("counter");
-
-if (input) {
-  input.addEventListener("input", () => {
-    counter.textContent = `${input.value.length} / 300`;
-  });
-}
-
 function analyze() {
   const text = input.value.trim();
 
@@ -23,7 +6,8 @@ function analyze() {
     return;
   }
 
-  let score = Math.min(95, Math.floor(text.length * 0.6 + Math.random() * 20));
+  // score (litt mer naturlig variasjon)
+  let score = Math.floor(25 + Math.random() * 70);
 
   document.getElementById("percent").textContent = score + "%";
   document.getElementById("fill").style.width = score + "%";
@@ -32,13 +16,29 @@ function analyze() {
     "You're trying to control something that doesn't need control.",
     "This feels bigger in your mind than it is in reality.",
     "You don't need more answers — you need more calm.",
-    "If a friend told you this, what would you say to them?"
+    "Take a breath, it's okay.",
+    "You're overanalyzing a situation that might be simple.",
+    "This might not mean what your mind is telling you it means.",
+    "There is a good chance this is not as important as it feels.",
+    "You may be filling gaps with worst-case assumptions.",
+    "Pause and zoom out — does this matter tomorrow?",
+    "Your thoughts are running faster than reality right now.",
+    "You're reacting to uncertainty, not facts.",
+    "Even if something is wrong, you will handle it.",
+    "Most worries feel real but are not certain.",
+    "Try asking: what do I KNOW vs what do I THINK?",
+    "Your mind is predicting, not observing."
   ];
 
   const container = document.getElementById("perspectives");
   container.innerHTML = "";
 
-  perspectives.forEach(t => {
+  // shuffle + velg tilfeldig miks
+  const shuffled = [...perspectives].sort(() => Math.random() - 0.5);
+
+  const amount = 5; // hvor mange svar du vil vise
+
+  shuffled.slice(0, amount).forEach(t => {
     const div = document.createElement("div");
     div.className = "card";
     div.textContent = t;
