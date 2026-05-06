@@ -1,54 +1,160 @@
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-
-  document.getElementById(pageId).classList.add('active');
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
 }
 
-// live character counter
-const input = document.getElementById("input");
-const counter = document.getElementById("counter");
-
-if (input) {
-  input.addEventListener("input", () => {
-    counter.textContent = `${input.value.length} / 300`;
-  });
+body{
+  background:#0b0a16;
+  color:white;
+  overflow-x:hidden;
 }
 
-// MAIN ANALYZE FUNCTION
-function analyze() {
-  const text = input.value.trim();
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle at top,#6d28d9,transparent 40%),
+             radial-gradient(circle at bottom,#db2777,transparent 40%);
+  filter:blur(120px);
+  opacity:0.4;
+  z-index:-1;
+}
 
-  if (!text) {
-    alert("Please write something first 🙂");
-    return;
-  }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
 
-  // simple overthinking score
-  let score = Math.min(95, Math.floor(text.length * 0.6 + Math.random() * 20));
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 0;
+}
 
-  // update UI
-  document.getElementById("percent").textContent = score + "%";
-  document.getElementById("fill").style.width = score + "%";
+.logo{font-weight:700}
 
-  // perspectives
-  const perspectives = [
-    "You're trying to control something that doesn't need control.",
-    "This feels bigger in your mind than it is in reality.",
-    "You don't need more answers — you need more calm.",
-    "If a friend told you this, what would you say to them?"
-  ];
+nav a{
+  margin:0 10px;
+  opacity:0.7;
+  cursor:pointer;
+}
 
-  const container = document.getElementById("perspectives");
-  container.innerHTML = "";
+nav a:hover{opacity:1}
 
-  perspectives.forEach(text => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.textContent = text;
-    container.appendChild(div);
-  });
+.page{display:none}
+.active{display:block}
 
-  showPage("resultPage");
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:60px;
+}
+
+.hero-left{max-width:550px}
+
+h1{
+  font-size:48px;
+  line-height:1.1;
+}
+
+h1 span{color:#c084fc}
+
+.subtext{
+  margin-top:15px;
+  opacity:0.7;
+}
+
+.glass-box{
+  margin-top:25px;
+  padding:15px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+textarea{
+  width:100%;
+  height:110px;
+  background:transparent;
+  border:none;
+  color:white;
+  outline:none;
+  resize:none;
+  font-size:14px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
+}
+
+button{
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  border:none;
+  padding:10px 16px;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.badges{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  opacity:0.8;
+  font-size:13px;
+}
+
+.orb{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,#a855f7,#ec4899);
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+}
+
+.bar{
+  height:10px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+#fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#a855f7,#ec4899);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.back{
+  margin-bottom:20px;
 }
